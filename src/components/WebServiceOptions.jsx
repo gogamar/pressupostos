@@ -16,7 +16,7 @@ function WebServiceOptions({ onChange, options }) {
   return (
     <div className="mt-6 flex flex-col space-y-4">
       <div className="flex items-center justify-end gap-5">
-        <label className="text-sm text-gray-600">Número de pàgines:</label>
+        <label className="text-sm text-gray-600">Nombre de pàgines:</label>
         <div className="flex items-center space-x-2">
           <button onClick={() => decrement("pages")} className="rounded p-1 hover:bg-gray-300">
             <img src={minusIcon} alt="Decrement" className="h-4 w-4 text-gray-500" />
@@ -29,7 +29,7 @@ function WebServiceOptions({ onChange, options }) {
       </div>
 
       <div className="flex items-center justify-end gap-5">
-        <label className="text-sm text-gray-600">Número de llengues:</label>
+        <label className="text-sm text-gray-600">Nombre de llenguatges:</label>
         <div className="flex items-center space-x-2">
           <button onClick={() => decrement("languages")} className="rounded p-1 hover:bg-gray-300">
             <img src={minusIcon} alt="Decrement" className="h-4 w-4 text-gray-500" />

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import WebServiceOptions from "./WebServiceOptions";
 
 export default function ServiceCalculator() {
@@ -33,8 +34,13 @@ export default function ServiceCalculator() {
   const totalPrice = calculateTotal();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">
       <div className="mx-auto max-w-3xl space-y-6">
+        {/* Navigation back to Welcome */}
+        <Link to="/">
+          <button className="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 mb-4">Tornar a la Pantalla de Benvinguda</button>
+        </Link>
+
         {services.map((service) => (
           <div key={service.id} className="bg-white rounded-2xl shadow-xl p-6">
             <div className="flex items-center justify-between">
