@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import plusIcon from "../assets/plusIcon.svg";
 import minusIcon from "../assets/minusIcon.svg";
 
