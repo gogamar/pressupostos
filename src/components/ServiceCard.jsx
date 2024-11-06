@@ -1,3 +1,4 @@
+import HelpModal from "./HelpModal";
 import WebServiceOptions from "./WebServiceOptions";
 
 export default function ServiceCard({ service, selectedServices, handleCheckboxChange, webOptions, setWebOptions }) {
@@ -22,6 +23,7 @@ export default function ServiceCard({ service, selectedServices, handleCheckboxC
           <WebServiceOptions onChange={(key, value) => setWebOptions((prev) => ({ ...prev, [key]: value }))} options={webOptions} />
         </div>
       )}
+      <HelpModal />
     </div>
   );
 }
