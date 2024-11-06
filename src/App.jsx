@@ -1,12 +1,12 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-import { ModalProvider } from "./contexts/ModalContext.jsx";
+import { ModalProvider } from './contexts/ModalContext.jsx'
 
-import Welcome from "./components/Welcome";
-import ServiceCalculator from "./components/ServiceCalculator";
-import Header from "./components/Header";
+import Welcome from './pages/Welcome.jsx'
+import ServiceCalculator from './pages/ServiceCalculator.jsx'
+import Header from './components/Header'
 
-import "./App.css";
+import './App.css'
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         </div>
       </ModalProvider>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App
