@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Card from "./Card";
 import ServiceCard from "./ServiceCard";
 
 export default function ServiceCalculator() {
@@ -68,22 +67,22 @@ export default function ServiceCalculator() {
         {services.map((service) => (
           <ServiceCard key={service.id} service={service} selectedServices={selectedServices} handleCheckboxChange={handleCheckboxChange} webOptions={webOptions} setWebOptions={setWebOptions} />
         ))}
-        <Card>
+        <div className="card">
           <div className="mb-6 flex items-center space-x-2">
             <input type="text" value={clientName} onChange={(e) => setClientName(e.target.value)} placeholder="Nom" className="p-2 border border-gray-300 rounded w-full" />
             <input type="text" value={clientPhone} onChange={(e) => setClientPhone(e.target.value)} placeholder="Telèfon" className="p-2 border border-gray-300 rounded w-full" />
             <input type="text" value={clientEmail} onChange={(e) => setClientEmail(e.target.value)} placeholder="Email" className="p-2 border border-gray-300 rounded w-full" />
-            <button onClick={handleQuoteCreation} className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+            <button onClick={handleQuoteCreation} className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-nowrap">
               Solicitar Pressupost
             </button>
           </div>
-        </Card>
+        </div>
 
         <h3 className="text-2xl font-semibold text-gray-900 text-end">
           Preu pressuposat: {totalPrice}
           <span className="text-sm"> €</span>
         </h3>
-        <Card>
+        <div className="card">
           <h3 className="text-xl font-semibold text-gray-900">Pressupostos Creats:</h3>
           <ul className="list-disc pl-5">
             {quotes.map((quote, index) => (
@@ -96,7 +95,7 @@ export default function ServiceCalculator() {
               </li>
             ))}
           </ul>
-        </Card>
+        </div>
       </div>
     </div>
   );

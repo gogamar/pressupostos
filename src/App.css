@@ -1,0 +1,6 @@
+.card {
+  @apply bg-white p-6 rounded-lg shadow-md border border-gray-200;
+}
+
+
+/* bg-white rounded-2xl shadow-xl p-6 */

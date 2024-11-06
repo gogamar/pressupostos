@@ -1,9 +1,8 @@
-import Card from "./Card";
 import WebServiceOptions from "./WebServiceOptions";
 
 export default function ServiceCard({ service, selectedServices, handleCheckboxChange, webOptions, setWebOptions }) {
   return (
-    <Card>
+    <div className="card">
       <div className="flex items-center justify-between">
         <div className="flex flex-col space-y-1">
           <p className="text-lg font-semibold text-gray-800">{service.label}</p>
@@ -23,6 +22,6 @@ export default function ServiceCard({ service, selectedServices, handleCheckboxC
           <WebServiceOptions onChange={(key, value) => setWebOptions((prev) => ({ ...prev, [key]: value }))} options={webOptions} />
         </div>
       )}
-    </Card>
+    </div>
   );
 }
