@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+
+import { services } from "../data/servicesData";
+
+import { calculateWebCost, calculateTotal } from "../utils/serviceUtils";
+import { validateSelectedServices, validateClientName, validateClientEmail } from "../utils/validationUtils";
+
 import ServiceCard from "../components/ServiceCard";
 import QuoteList from "../components/QuoteList";
 import Alert from "../components/Alert";
 import Button from "../components/Button";
-import { BackwardIcon } from "@heroicons/react/24/outline";
-import { services } from "../data/servicesData";
-import { calculateWebCost, calculateTotal } from "../utils/serviceUtils";
-import { validateSelectedServices, validateClientName, validateClientEmail } from "../utils/validationUtils";
+
+import { BackwardIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
 export default function ServiceCalculator() {
   const [selectedServices, setSelectedServices] = useState({
@@ -159,8 +163,8 @@ export default function ServiceCalculator() {
                 placeholder="Email *"
                 className="p-2 border border-gray-300 rounded w-full"
               />
-              <button type="submit" className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-nowrap">
-                Solicitar Pressupost
+              <button type="submit" className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 flex items-center text-nowrap">
+                Solicitar Pressupost <ArrowRightIcon className="ms-2 w-4 h-4" aria-hidden="true" />
               </button>
             </div>
           </form>
