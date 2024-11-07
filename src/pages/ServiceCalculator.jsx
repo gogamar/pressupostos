@@ -1,28 +1,39 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-
 import { services } from "../data/servicesData";
-
 import { calculateWebCost, calculateTotal } from "../utils/serviceUtils";
 import { validateSelectedServices, validateClientName, validateClientEmail } from "../utils/validationUtils";
-
 import ServiceCard from "../components/ServiceCard";
 import QuoteList from "../components/QuoteList";
 import Alert from "../components/Alert";
 import Button from "../components/Button";
 import Toggle from "../components/Toggle";
-
-import { BackwardIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
+import { ArrowUturnLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
 export default function ServiceCalculator() {
-  const [selectedServices, setSelectedServices] = useState({
-    seo: false,
-    ad: false,
-    web: false,
-  });
-  const [isAnnual, setIsAnnual] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Parse the URL parameters to set the initial state
+  const initialSelectedServices = () => {
+    const params = new URLSearchParams(location.search);
+    const selectedServices = { seo: false, ad: false, web: false };
+
+    // Set services based on URL params
+    services.forEach((service) => {
+      if (params.get(service.id) === "true") {
+        selectedServices[service.id] = true;
+      }
+      if (service.id === "web") {
+        selectedServices.web = true;
+      }
+    });
+    return selectedServices;
+  };
+  const [selectedServices, setSelectedServices] = useState(initialSelectedServices);
   const [webOptions, setWebOptions] = useState({ pages: 1, languages: 1 });
+  const [isAnnual, setIsAnnual] = useState(new URLSearchParams(location.search).get("annual") === "true");
   const [clientName, setClientName] = useState("");
   const [clientPhone, setClientPhone] = useState("");
   const [clientEmail, setClientEmail] = useState("");
@@ -42,11 +53,37 @@ export default function ServiceCalculator() {
         ...prev,
         [id]: !prev[id],
       };
-
       dismissAlert();
+      if (id !== "web") {
+        setWebOptions({ pages: 1, languages: 1 });
+      }
       return updatedSelectedServices;
     });
   };
+
+  // Update URL when selected services or web options change
+  useEffect(() => {
+    const params = new URLSearchParams();
+
+    Object.keys(selectedServices).forEach((serviceId) => {
+      if (selectedServices[serviceId]) {
+        const service = services.find((s) => s.id === serviceId);
+        params.append(service.id, "true");
+
+        if (serviceId === "web") {
+          params.append("pag", webOptions.pages);
+          params.append("lang", webOptions.languages);
+        }
+      }
+    });
+
+    if (isAnnual) {
+      params.append("annual", "true");
+    }
+
+    const url = `/calculadora?${params.toString()}`;
+    navigate(url, { replace: true });
+  }, [selectedServices, webOptions, isAnnual, navigate]);
 
   const handleQuoteCreation = (e) => {
     e.preventDefault();
@@ -105,6 +142,7 @@ export default function ServiceCalculator() {
 
     setQuotes((prevQuotes) => [...prevQuotes, newQuote]);
 
+    // Reset form state
     setClientName("");
     setClientPhone("");
     setClientEmail("");
@@ -112,6 +150,7 @@ export default function ServiceCalculator() {
     setWebOptions({ pages: 1, languages: 1 });
     setAlertMessage("Pressupost afegit");
     setAlertType("success");
+
     setTimeout(() => {
       dismissAlert();
     }, 2000);
@@ -121,7 +160,7 @@ export default function ServiceCalculator() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">
       <div className="mx-auto max-w-3xl space-y-6">
         <Link to="/">
-          <Button text="Tornar" icon={BackwardIcon} />
+          <Button text="Tornar" icon={ArrowUturnLeftIcon} />
         </Link>
 
         <div className="flex justify-center">
