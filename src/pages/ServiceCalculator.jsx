@@ -175,7 +175,7 @@ export default function ServiceCalculator() {
 
         <div className="card">
           <form onSubmit={handleQuoteCreation} className="mb-6">
-            <div className="flex items-center space-x-2">
+            <div className="flex flex-col md:flex-row items-center gap-3">
               <input
                 type="text"
                 value={clientName}

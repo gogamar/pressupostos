@@ -29,17 +29,17 @@ function WebServiceOptions({ onChange, options }) {
               }}
               className="rounded p-1 hover:bg-gray-300"
             >
-              <InformationCircleIcon className="w-4 h-4 text-gray-500" aria-hidden="true" />
+              <InformationCircleIcon className="w-5 h-5 text-gray-500" aria-hidden="true" />
             </button>
             <label className="text-sm text-gray-600">{option.title}</label>
           </div>
           <div className="flex items-center space-x-2">
             <button onClick={() => decrement(option.key)} className="rounded p-1 hover:bg-gray-300">
-              <MinusCircleIcon className="w-4 h-4 text-gray-500" aria-hidden="true" />
+              <MinusCircleIcon className="w-5 h-5 text-gray-500" aria-hidden="true" />
             </button>
             <input value={options[option.key] || 1} onChange={(e) => onChange(option.key, Number(e.target.value))} min="1" className="w-20 p-1 text-center border rounded" />
             <button onClick={() => increment(option.key)} className="rounded p-1 hover:bg-gray-300">
-              <PlusCircleIcon className="w-4 h-4 text-gray-500" aria-hidden="true" />
+              <PlusCircleIcon className="w-5 h-5 text-gray-500" aria-hidden="true" />
             </button>
           </div>
         </div>

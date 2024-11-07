@@ -6,7 +6,7 @@ export default function Header() {
         backgroundImage: 'url("https://www.shutterstock.com/image-photo/business-financing-accounting-banking-concept-600nw-2267738379.jpg")',
       }}
     >
-      <h2 className="text-4xl font-semibold tracking-tight text-gray-800 text-center">Aconseguiex la millor qualitat</h2>
+      <h2 className="text-4xl font-semibold tracking-tight text-gray-800 text-center">Aconsegueix la millor qualitat</h2>
     </div>
   );
 }

@@ -13,7 +13,6 @@ export default function QuoteList({ quotes, clearLocalStorage }) {
 
   const handleSort = (sortType) => {
     if (sortBy === sortType) {
-      // If the same field is clicked again, toggle the direction
       setSortDirection(sortDirection === "asc" ? "desc" : "asc");
     } else {
       // If a different field is clicked, reset direction to ascending

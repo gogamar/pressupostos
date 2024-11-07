@@ -1,11 +1,9 @@
-"use client";
-
 import { Field, Label, Switch } from "@headlessui/react";
 
 export default function Toggle({ checked, onChange }) {
   return (
-    <Field className="grid grid-cols-3">
-      <Label as="span" className="mr-3 text-sm">
+    <Field className="grid grid-cols-3 items-center">
+      <Label as="span" className="mr-3 text-sm text-end">
         <span className="font-medium text-gray-900">Pagament mensual</span>
       </Label>
       <div className="flex justify-center">
@@ -13,7 +11,7 @@ export default function Toggle({ checked, onChange }) {
           <span aria-hidden="true" className="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out group-data-[checked]:translate-x-5" />
         </Switch>
       </div>
-      <Label as="span" className="ml-3 text-sm">
+      <Label as="span" className="ml-3 text-sm text-start">
         <span className="font-medium text-gray-900">Pagament anual</span>
       </Label>
     </Field>
