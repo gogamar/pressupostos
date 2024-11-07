@@ -42,7 +42,7 @@ export default function QuoteList({ quotes, clearLocalStorage }) {
 
       {getSortedQuotes(filteredQuotes, sortBy, sortDirection).map((quote, index) => {
         return (
-          <div key={quote.clientEmail || index} className="card flex justify-between mb-4">
+          <div key={quote.clientEmail || index} className="card flex flex-col md:flex-row  justify-between gap-4 flex-center mb-4">
             <div>
               <div className="font-bold text-gray-900 text-xl">{quote.clientName}</div>
               <div className="text-gray-500">{quote.clientEmail}</div>
