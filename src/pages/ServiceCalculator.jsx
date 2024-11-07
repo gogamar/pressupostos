@@ -11,6 +11,7 @@ import ServiceCard from "../components/ServiceCard";
 import QuoteList from "../components/QuoteList";
 import Alert from "../components/Alert";
 import Button from "../components/Button";
+import Toggle from "../components/Toggle";
 
 import { BackwardIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
@@ -20,7 +21,7 @@ export default function ServiceCalculator() {
     ad: false,
     web: false,
   });
-
+  const [isAnnual, setIsAnnual] = useState(false);
   const [webOptions, setWebOptions] = useState({ pages: 1, languages: 1 });
   const [clientName, setClientName] = useState("");
   const [clientPhone, setClientPhone] = useState("");
@@ -50,7 +51,6 @@ export default function ServiceCalculator() {
   const handleQuoteCreation = (e) => {
     e.preventDefault();
 
-    // At least one service has to be selected
     const serviceValidation = validateSelectedServices(selectedServices);
     if (!serviceValidation.valid) {
       setAlertMessage(serviceValidation.message);
@@ -99,13 +99,12 @@ export default function ServiceCalculator() {
       clientPhone,
       clientEmail,
       services: hiredServices,
-      total: calculateTotal(selectedServices, services, webOptions),
+      total: calculateTotal(selectedServices, services, webOptions, isAnnual),
       date: new Date().toLocaleString(),
     };
 
     setQuotes((prevQuotes) => [...prevQuotes, newQuote]);
 
-    // Reset form and show success alert
     setClientName("");
     setClientPhone("");
     setClientEmail("");
@@ -124,8 +123,13 @@ export default function ServiceCalculator() {
         <Link to="/">
           <Button text="Tornar" icon={BackwardIcon} />
         </Link>
+
+        <div className="flex justify-center">
+          <Toggle checked={isAnnual} onChange={() => setIsAnnual(!isAnnual)} />
+        </div>
+
         {services.map((service) => (
-          <ServiceCard key={service.id} service={service} selectedServices={selectedServices} handleCheckboxChange={handleCheckboxChange} webOptions={webOptions} setWebOptions={setWebOptions} />
+          <ServiceCard key={service.id} service={service} isAnnual={isAnnual} selectedServices={selectedServices} handleCheckboxChange={handleCheckboxChange} webOptions={webOptions} setWebOptions={setWebOptions} />
         ))}
 
         {alertMessage && <Alert alert={alertMessage} alertType={alertType} dismissAlert={dismissAlert} />}
@@ -171,7 +175,7 @@ export default function ServiceCalculator() {
         </div>
 
         <h3 className="text-2xl font-semibold text-gray-900 text-end">
-          Total pressupost: {calculateTotal(selectedServices, services, webOptions)}
+          Total pressupost: {calculateTotal(selectedServices, services, webOptions, isAnnual)}
           <span className="text-sm"> €</span>
         </h3>
         <hr className="border-t-2 border-dashed border-gray-300 my-6" />
